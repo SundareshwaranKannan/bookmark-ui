@@ -1,0 +1,26 @@
+<div class="card">
+  <div class="card-header">
+    <div *ngIf="bookmark.longUrl" class="bookmark-image">
+      <img
+          class="bookmark-icon"
+          [src]="getFavIcon(bookmark.longUrl)"
+      />
+    </div>
+    <div class="title"><strong>{{bookmark.bookmarkTitle}}</strong></div>
+    <div class="bookmarkEdit">
+      <em class="fa fa-edit fa-lg cursor-pointer mr-2" (click)="editBookmark()"></em>
+      <em class="fa fa-trash fa-lg cursor-pointer" (click)="deleteBookmark()"></em>
+    </div>
+  </div>
+  <div class="card-body ml-2 bookmark-position">
+    <div class="container pb-2">
+      <span>{{bookmark.description}}</span>
+    </div>
+    <div class="container">
+      <strong class="badge badge-pill badge-info">Short url</strong><br/>
+      <a (click)="openWindow()" class="alert-link cursor-pointer" style="color:dodgerblue;">
+        https://sg-digital.herokuapp.com/sg-digital/{{ bookmark.shortUrl }}
+      </a>
+    </div>
+  </div>
+</div>

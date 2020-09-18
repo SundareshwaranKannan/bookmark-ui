@@ -1,0 +1,61 @@
+<div class="container h-100 w-100 mt-4 pt-4">
+  <div class="row justify-content-end">
+    <button class="btn btn-lg btn-outline-primary" (click)="onAddBookmarkClick(bookmarkTemplate)">
+      Add bookmark
+    </button>
+  </div>
+  <div class="row pt-3 pb-3">
+    <div class="col-3 pl-0">
+      <strong>Filter by</strong>
+      <select class="form-control form-control-lg" [formControl]="categoryFilter">
+        <option>None</option>
+        <option>User</option>
+        <option>Tribe</option>
+        <option>Application</option>
+      </select>
+    </div>
+    <div *ngIf="categoryFilter.value === 'Tribe'" class="col-3 ml-4">
+      <strong>Choose tribe</strong>
+      <select class="form-control form-control-lg" [formControl]="tribeFilter">
+        <option>RPP</option>
+        <option>TRA</option>
+        <option>OSD</option>
+      </select>
+    </div>
+    <div *ngIf="categoryFilter.value === 'Application'" class="col-3 ml-4">
+      <strong>Choose application</strong>
+      <select class="form-control form-control-lg" [formControl]="applicationFilter">
+        <option>DMN</option>
+        <option>CPM</option>
+        <option>Pilotage</option>
+      </select>
+    </div>
+    <div class="col-3 ml-4 mt-4 pt-2">
+      <button class="btn btn-lg btn-success" (click)="onFilterBookmarks()">Filter bookmarks</button>
+    </div>
+  </div>
+  <div *ngIf="displayLoading" class="row pt-4 justify-content-center">
+    <em class="fa fa-spinner fa-spin fa-2x"></em>
+  </div>
+  <div *ngIf="bookmarks.length > 0" class="row pt-3 pb-3">
+    <div class="col-4 p-2 mb-2" *ngFor="let bookmark of bookmarks">
+      <bookmark-card
+          [bookmark]="bookmark"
+          (deleteBookmarkEmitter)="loadAllBookMarks()"
+      ></bookmark-card>
+    </div>
+  </div>
+</div>
+
+<ng-template #bookmarkTemplate>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Add bookmark</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body mb-4">
+    <short-url></short-url>
+    <button class="btn btn-lg btn-primary reload-button" (click)="reloadBookmarks()">Reload bookmarks</button>
+  </div>
+</ng-template>

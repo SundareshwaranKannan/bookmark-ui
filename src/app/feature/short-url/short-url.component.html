@@ -1,0 +1,108 @@
+<div class="container h-100 w-100 mt-4 pt-4">
+  <strong *ngIf="displayDescriptionError" class="description-error">
+   * Description shouldn't be more than 250 words
+  </strong>
+  <div class="row ml-4 url-shortener">
+    <div class="col-8">
+      <input
+          class="form-control form-control-lg"
+          [formControl]="longUrlControl"
+          placeholder="Paste your long url here"
+      />
+    </div>
+    <div class="col-1">
+      <button (click)="shortMyUrl()" class="btn btn-lg btn-primary">Short it</button>
+    </div>
+    <div class="col-1">
+      <button (click)="reset()" class="btn btn-lg btn-primary ml-2">Reset</button>
+    </div>
+  </div>
+  <div class="mt-4 pt-3 pl-4 ml-4">
+    <div class="row">
+      <div class="col-4">
+        <label class="mr-4">Choose shortened link type</label>
+      </div>
+      <div *ngIf="displayDate" class="col-4">
+        <label class="ml-4">Expiry date</label>
+      </div>
+      <div *ngIf="!displayDate" class="col-4">
+        <label class="ml-4">Choose category</label>
+      </div>
+    </div>
+    <div class="row pt-3 pb-3">
+      <div class="col-4">
+        <select class="form-control form-control-lg" [formControl]="linkTypeControl" (change)="onTypeChange()">
+          <option>Group</option>
+          <option>Non-group</option>
+        </select>
+      </div>
+      <div *ngIf="displayDate" class="col-4 ml-4">
+        <input type="text"
+               placeholder="Datepicker"
+               class="form-control"
+               [formControl]="expiryDateControl"
+               [bsValue]="bsValue"
+               bsDatepicker
+        />
+      </div>
+      <div *ngIf="!displayDate" class="col-4 ml-4">
+        <select class="form-control form-control-lg" [formControl]="urlCategoryControl">
+          <option>None</option>
+          <option>User</option>
+          <option>Tribe</option>
+          <option>Application</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div *ngIf="!displayDate" class="col-4 mr-4">
+        <label>Bookmark title</label>
+      </div>
+      <div *ngIf="!displayDate && urlCategoryControl.value === 'Tribe'" class="col-4">
+        <label>Choose tribe</label>
+      </div>
+      <div *ngIf="!displayDate && urlCategoryControl.value === 'Application'" class="col-4">
+        <label>Choose application</label>
+      </div>
+    </div>
+    <div class="row pt-3 pb-3">
+      <div *ngIf="!displayDate" class="col-4 mr-4">
+        <input class="form-control form-control-lg" placeholder="Bookmark title" [formControl]="bookmarkTitle" />
+      </div>
+      <div *ngIf="!displayDate  && urlCategoryControl.value === 'Tribe'" class="col-4">
+        <select class="form-control form-control-lg" [formControl]="tribeControl">
+          <option>RPP</option>
+          <option>TRA</option>
+          <option>OSD</option>
+        </select>
+      </div>
+      <div *ngIf="!displayDate  && urlCategoryControl.value === 'Application'" class="col-4">
+        <select class="form-control form-control-lg" [formControl]="applicationControl">
+          <option>DMN</option>
+          <option>CPM</option>
+          <option>Pilotage</option>
+        </select>
+      </div>
+    </div>
+    <textarea *ngIf="!displayDate"
+        class="form-control form-control-lg pt-4 mt-4"
+        rows="3"
+        cols="40"
+        placeholder="Provide the url description to save it in bookmark"
+        [formControl]="descriptionControl">
+    </textarea>
+    <div *ngIf="displayShortUrl" class="mt-4 pt-4 mb-4">
+      <alert type="success">
+        <div class="row justify-content-center">
+          <h3>Shortened url</h3>
+        </div>
+        <div class="row justify-content-center mt-3 mb-3">
+          <a (click)="openWindow()" class="alert-link cursor-pointer">
+            https://sg-digital.herokuapp.com/sg-digital/{{ shortUrlResponse.shortUrl }}
+          </a>
+        </div>
+      </alert>
+    </div>
+  </div>
+
+</div>

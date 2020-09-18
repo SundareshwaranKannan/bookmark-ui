@@ -1,0 +1,14 @@
+<div class="topnav mt-1">
+  <a [ngClass]="displayUrlShortener ? 'active cursor-pointer' : 'cursor-pointer'"
+     (click)="loadUrlShortener()">Url shortener</a>
+  <a [ngClass]="displayBookmarks ? 'active cursor-pointer' : 'cursor-pointer'"
+     (click)="loadBookmarks()">Bookmarks</a>
+</div>
+
+<div class="bookmark-header" *ngIf="displayUrlShortener">
+  <short-url></short-url>
+</div>
+
+<div class="bookmark-header" *ngIf="displayBookmarks">
+  <bookmarks></bookmarks>
+</div>
