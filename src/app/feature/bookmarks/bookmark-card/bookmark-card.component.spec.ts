@@ -8,7 +8,7 @@ import {BsDatepickerModule} from 'ngx-bootstrap/datepicker';
 import {AlertModule} from 'ngx-bootstrap/alert';
 import {ModalModule} from 'ngx-bootstrap/modal';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
-import {ShortUrlResponse} from "../../../shared/model/short-url-response";
+import {ShortUrlResponse} from '../../../shared/model/short-url-response';
 
 describe('BookmarkCardComponent', () => {
   let component: BookmarkCardComponent;
