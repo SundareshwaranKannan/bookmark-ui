@@ -2,6 +2,10 @@
 
 The bookmark-ui is the front-end angular application, which provides the UI for performing url shortening and adding books marks with short urls which will redirect you the actual page.
 
+## Demo 
+Application 
+* `https://sundareshwarankannan.github.io/bookmark-ui/`[demo](https://sundareshwarankannan.github.io/bookmark-ui/)
+
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.12.
 
